@@ -43,13 +43,17 @@ library(rnaturalearth)
 
 6.  Next to the code chunk option `#| eval:` change the value from `false` to `true`.
 
-7.  Render the document and fix any errors.
+7.  Render the document and fix any errors.\
+
+How to read the code below:\
+\
+- take the gapminder object, use the pipe to send it into the filter function, and then show only rows/observations for the year 2007, store the results in gapminder_2007 using the assignment operator
 
 ```{r}
 #| eval: false
- 
-gapminder_2007 <- ___ |> 
-  ___(year == 2007) 
+
+gapminder_2007 <- gapminder |> 
+  filter(year == 2007) 
 ```
 
 ## Task 3: Summarize data for life expectancy by continent
@@ -106,9 +110,9 @@ gapminder_summary_2007 <- ___ |>
 ```{r}
 #| eval: false
 
-gapminder_summary_continent_year <- gapminder ___ 
-  group_by(continent, ___) |> 
-  ___(lifeExp = median(lifeExp)) 
+gapminder_summary_continent_year <- gapminder |>  
+  group_by(continent, year) |> 
+  summarise(lifeExp = median(lifeExp)) 
 
 ```
 
@@ -144,6 +148,10 @@ gapminder_summary_continent_year <- read_rds(here::here("data/gapminder-summary-
 4.  Run the code contained in the code chunk and fix any errors.
 
 5.  What are the data types of the three variables used for aesthetic mappings?
+
+```{r}
+
+```
 
 ## Task 7: Create a timeseries plot
 
@@ -238,6 +246,12 @@ gapminder_summary_continent_year <- read_rds(here::here("data/gapminder-summary-
 ```{r}
 #| eval: false
 
+library(gapminder)
+library(ggplot2)
+
+gapminder |> 
+  filter(year == 2007)
+
 ggplot(data = gapminder,
        mapping = aes(x = year, 
                      y = lifeExp, 
@@ -316,3 +330,14 @@ Once you have ensured that the Quarto document renders without errors and you ha
 5.  Click on the green "New issue" button.
 6.  In the "Title" field write: "Completed module 2 assignments".
 7.  In the "Leave a comment" field, tag the course instructors @larnsce @mianzg @sskorik01 and ask some questions, if you like.
+
+## Other examples
+
+```{r}
+library(ggplot2)
+
+ggplot(mpg, aes(displ, hwy, colour = class)) + 
+  geom_point()
+
+
+```
